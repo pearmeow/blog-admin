@@ -1,13 +1,17 @@
-React Project Template
-----------------------
+Blog Admin Page
+---------------
 
-React Project Template
+Blog Admin Page
 
 Features
 --------
 
-- [ ] Wow, feature?
-- [ ] A really good feature
+- [ ] Login page
+- [ ] Register page with code to register
+- [ ] Create article
+- [ ] Edit article
+- [ ] Delete article
+- [ ] Delete comments on articles
 - [ ] Good styling
 
 How to use this project
