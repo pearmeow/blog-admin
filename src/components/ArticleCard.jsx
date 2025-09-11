@@ -1,7 +1,8 @@
-function ArticleCard() {
+function ArticleCard({ title, text }) {
     return (
         <>
-            <p>Article Card</p>
+            <p>Title: {title}</p>
+            <p>Body: {text}</p>
         </>
     );
 }
