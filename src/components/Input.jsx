@@ -1,7 +1,10 @@
-function Input() {
+function Input({ type, labelName, name, id }) {
     return (
         <>
-            <p>Input</p>
+            <p>
+                <label htmlFor={id}>{labelName} </label>
+                <input id={id} type={type} name={name} />
+            </p>
         </>
     );
 }

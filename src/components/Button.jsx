@@ -1,7 +1,7 @@
-function Button() {
+function Button({ type, text }) {
     return (
         <>
-            <p>Button</p>
+            <button type={type}>{text}</button>
         </>
     );
 }

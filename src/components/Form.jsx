@@ -1,7 +1,7 @@
-function Form() {
+function Form({ onSubmit, children }) {
     return (
         <>
-            <p>Form</p>
+            <form onSubmit={onSubmit}>{children}</form>
         </>
     );
 }
