@@ -1,10 +1,11 @@
 import "./styles/App.css";
-import Login from "./components/Login";
-import Article from "./components/Post";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import routes from "./routes";
+
+let router = createBrowserRouter(routes);
 
 function App() {
-    const jwt = localStorage.getItem("token");
-    return <>{jwt ? <Post /> : <Login />}</>;
+    return <RouterProvider router={router} />;
 }
 
 export default App;
