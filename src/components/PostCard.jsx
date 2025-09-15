@@ -1,4 +1,4 @@
-function ArticleCard({ title, text }) {
+function PostCard({ title, text }) {
     return (
         <>
             <p>Title: {title}</p>
@@ -7,4 +7,4 @@ function ArticleCard({ title, text }) {
     );
 }
 
-export default ArticleCard;
+export default PostCard;
