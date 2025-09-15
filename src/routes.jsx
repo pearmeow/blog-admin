@@ -2,8 +2,8 @@ import Login from "./components/Login";
 
 const routes = [
     {
-        path: "/",
         Component: Login,
+        path: "/",
     },
     // {
     //     path: "/register",

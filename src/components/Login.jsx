@@ -24,7 +24,8 @@ function Login() {
             if (token.ok) {
                 const jwt = await token.json();
                 localStorage.setItem("token", jwt);
-                setErrorMessage("Username or password is wrong");
+                setErrorMessage("Username or password is right");
+                // TODO: redirect to posts
             } else {
                 // TODO: Give some error message
                 setErrorMessage("Username or password is wrong");
