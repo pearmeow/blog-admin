@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
+import { redirect } from "react-router";
 import PostCard from "./PostCard";
+import isAuthorized from "../auth.jsx";
 
-function Post() {
+function Posts() {
+    if (!isAuthorized()) {
+        redirect("/");
+    }
     const [posts, setPosts] = useState(null);
     useEffect(() => {
         (async () => {
-            const res = await fetch("http://localhost:3000/posts");
-            if (!res.ok) {
-                return;
+            try {
+                const res = await fetch("http://localhost:3000/posts");
+                if (!res.ok) {
+                    return;
+                }
+                const data = await res.json();
+                setPosts(data);
+            } catch (err) {
+                console.log(err);
             }
-            const data = await res.json();
-            setPosts(data);
         })();
     }, []);
     const pagePosts = [];
@@ -25,4 +34,4 @@ function Post() {
     return <>{pagePosts}</>;
 }
 
-export default Post;
+export default Posts;

@@ -1,4 +1,5 @@
 import Login from "./components/Login";
+import Posts from "./components/Posts";
 
 const routes = [
     {
@@ -6,11 +7,13 @@ const routes = [
         path: "/",
     },
     // {
+    //     Component: ,
     //     path: "/register",
     // },
-    // {
-    //     path: "/posts",
-    // },
+    {
+        Component: Posts,
+        path: "/posts",
+    },
     // {
     //     path: "/posts/:id",
     // },
