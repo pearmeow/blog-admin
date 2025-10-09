@@ -2,9 +2,11 @@ import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function Login() {
     const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate();
     const handleLogin = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -24,17 +26,14 @@ function Login() {
             if (token.ok) {
                 const jwt = await token.json();
                 localStorage.setItem("token", jwt);
-                setErrorMessage("Username or password is right");
-                // TODO: redirect to posts
+                // setErrorMessage("Username or password is right");
+                navigate("/posts");
             } else {
-                // TODO: Give some error message
                 setErrorMessage("Username or password is wrong");
-                console.log(errorMessage);
             }
         } catch (err) {
-            // TODO: Give some error message
             console.log(err);
-            setErrorMessage("Something went wrong and I don't know what!");
+            setErrorMessage("Failed to fetch from api");
             return;
         }
     };
