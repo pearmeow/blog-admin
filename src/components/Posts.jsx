@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { redirect } from "react-router";
+import { useNavigate } from "react-router";
 import PostCard from "./PostCard";
 import isAuthorized from "../auth.jsx";
 
 function Posts() {
-    if (!isAuthorized()) {
-        redirect("/");
-    }
     const [posts, setPosts] = useState(null);
+    let navigate = useNavigate();
     useEffect(() => {
         (async () => {
+            if (!isAuthorized()) {
+                navigate("/");
+            }
             try {
                 const res = await fetch("http://localhost:3000/posts");
                 if (!res.ok) {
+                    console.log("joever");
                     return;
                 }
                 const data = await res.json();
@@ -21,7 +23,7 @@ function Posts() {
                 console.log(err);
             }
         })();
-    }, []);
+    }, [navigate]);
     const pagePosts = [];
     if (posts) {
         posts.forEach((elem) => {
