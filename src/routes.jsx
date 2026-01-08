@@ -1,6 +1,7 @@
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Posts from "./components/Posts";
+import CreatePost from "./components/CreatePost";
 
 const routes = [
     {
@@ -14,6 +15,10 @@ const routes = [
     {
         Component: Posts,
         path: "/posts",
+    },
+    {
+        Component: CreatePost,
+        path: "/posts/new",
     },
     // {
     //     path: "/posts/:id",
