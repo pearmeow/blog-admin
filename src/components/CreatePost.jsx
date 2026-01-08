@@ -2,9 +2,11 @@ import { useState } from "react";
 import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
+import { useNavigate } from "react-router";
 
 function CreatePost() {
     let [errorMessage, setErrorMessage] = useState(null);
+    let navigate = useNavigate();
     const handleCreatePost = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -27,6 +29,7 @@ function CreatePost() {
             if (res.ok) {
                 let stuff = await res.json();
                 console.log(stuff);
+                navigate("/posts");
             } else {
                 setErrorMessage(res.ok);
             }
