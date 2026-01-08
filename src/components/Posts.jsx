@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import PostCard from "./PostCard";
 import isAuthorized from "../auth.jsx";
 
@@ -34,7 +34,12 @@ function Posts() {
         });
     }
 
-    return <>{pagePosts}</>;
+    return (
+        <>
+            {pagePosts}
+            <Link to="/posts/new">New post</Link>
+        </>
+    );
 }
 
 export default Posts;
