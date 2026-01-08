@@ -18,6 +18,7 @@ function Posts() {
                     return;
                 }
                 const data = await res.json();
+                console.log(data);
                 setPosts(data);
             } catch (err) {
                 console.log(err);
