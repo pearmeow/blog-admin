@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Register() {
     const [errorMessage, setErrorMessage] = useState(null);
-    const handleLogin = async (event) => {
+    const handleRegister = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const username = formData.get("username");
@@ -41,7 +41,7 @@ function Register() {
         <>
             <p>Register</p>
             <p>{errorMessage}</p>
-            <Form onSubmit={handleLogin}>
+            <Form onSubmit={handleRegister}>
                 <Input
                     type="text"
                     labelName="Username"
