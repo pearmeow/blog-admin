@@ -12,7 +12,7 @@ function Posts() {
                 navigate("/");
             }
             try {
-                const res = await fetch("http://localhost:3000/posts");
+                const res = await fetch(import.meta.env.VITE_API + "posts");
                 if (!res.ok) {
                     console.log("joever");
                     return;

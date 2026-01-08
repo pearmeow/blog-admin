@@ -13,16 +13,19 @@ function Login() {
         const username = formData.get("username");
         const password = formData.get("password");
         try {
-            const token = await fetch("http://localhost:3000/tokens/authors", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            const token = await fetch(
+                import.meta.env.VITE_API + "tokens/authors",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                    }),
                 },
-                body: JSON.stringify({
-                    username,
-                    password,
-                }),
-            });
+            );
             if (token.ok) {
                 const jwt = await token.json();
                 localStorage.setItem("token", jwt);

@@ -13,7 +13,7 @@ function Register() {
         const confirm = formData.get("confirm");
         const authorcode = formData.get("authorcode");
         try {
-            const res = await fetch("http://localhost:3000/authors", {
+            const res = await fetch(import.meta.env.VITE_API + "authors", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
