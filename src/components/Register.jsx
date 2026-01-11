@@ -2,6 +2,7 @@ import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
+import { Link } from "react-router";
 
 function Register() {
     const [errorMessage, setErrorMessage] = useState(null);
@@ -60,9 +61,15 @@ function Register() {
                     name="confirm"
                     id={3}
                 />
-                <Input type="text" labelName="Code" name="authorcode" id={4} />
+                <Input
+                    type="text"
+                    labelName="Code (for author creation)"
+                    name="authorcode"
+                    id={4}
+                />
                 <Button type="submit" text="Submit" />
             </Form>
+            <Link to="/">Back to login</Link>
         </>
     );
 }

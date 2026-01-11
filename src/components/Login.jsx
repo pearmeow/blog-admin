@@ -3,6 +3,7 @@ import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 function Login() {
     const [errorMessage, setErrorMessage] = useState(null);
@@ -59,6 +60,7 @@ function Login() {
                 />
                 <Button type="submit" text="Submit" />
             </Form>
+            <Link to="/register">Register</Link>
         </>
     );
 }
