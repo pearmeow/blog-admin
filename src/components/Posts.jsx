@@ -29,7 +29,12 @@ function Posts() {
     if (posts) {
         posts.forEach((elem) => {
             pagePosts.push(
-                <PostCard key={elem.id} title={elem.title} text={elem.text} />,
+                <PostCard
+                    key={elem.id}
+                    title={elem.title}
+                    text={elem.text}
+                    id={elem.id}
+                />,
             );
         });
     }
