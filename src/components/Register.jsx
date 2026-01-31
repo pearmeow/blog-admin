@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 function Register() {
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState([]);
     const handleRegister = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -27,10 +27,16 @@ function Register() {
                 }),
             });
             if (res.ok) {
-                let stuff = await res.json();
-                console.log(stuff);
+                let result = await res.json();
+                console.log(result);
             } else {
-                setErrorMessage("Username or password is wrong");
+                let result = await res.json();
+                console.log(result);
+                let errs = [];
+                for (const elem of result) {
+                    errs.push(<p>{elem.msg}</p>);
+                }
+                setErrorMessage(errs);
             }
         } catch (err) {
             console.log(err);
@@ -41,7 +47,7 @@ function Register() {
     return (
         <>
             <p>Register</p>
-            <p>{errorMessage}</p>
+            {errorMessage}
             <Form onSubmit={handleRegister}>
                 <Input
                     type="text"
