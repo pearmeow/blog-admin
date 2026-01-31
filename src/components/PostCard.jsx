@@ -5,7 +5,9 @@ function PostCard({ title, text, id }) {
         <>
             <p>Title: {title}</p>
             <p>Body: {text}</p>
-            <Link to={link}>Go to post {id}</Link>
+            <p>
+                <Link to={link}>Go to post {id}</Link>
+            </p>
         </>
     );
 }
