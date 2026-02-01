@@ -1,4 +1,4 @@
-function Input({ type, labelName, name, id, defaultValue }) {
+function Input({ type, labelName, name, id, defaultValue, defaultChecked }) {
     return (
         <>
             <p>
@@ -8,6 +8,7 @@ function Input({ type, labelName, name, id, defaultValue }) {
                     type={type}
                     name={name}
                     defaultValue={defaultValue}
+                    defaultChecked={defaultChecked}
                 />
             </p>
         </>

@@ -96,7 +96,7 @@ function Post() {
                     labelName="Published"
                     name="published"
                     id={3}
-                    defaultValue={post ? post.published : false}
+                    defaultChecked={post ? post.published : false}
                 />
                 <Button type="submit" text="Submit" />
             </Form>
