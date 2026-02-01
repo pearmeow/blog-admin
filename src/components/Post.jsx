@@ -69,6 +69,7 @@ function Post() {
             return;
         }
     };
+    console.log(post ? post.published : false);
 
     return (
         <>
@@ -93,10 +94,12 @@ function Post() {
                 </p>
                 <Input
                     type="checkbox"
+                    // kinda hacky and weird
+                    key={post ? post.published : ""}
                     labelName="Published"
                     name="published"
                     id={3}
-                    defaultChecked={post ? post.published : false}
+                    defaultChecked={post ? post.published : ""}
                 />
                 <Button type="submit" text="Submit" />
             </Form>
