@@ -2,6 +2,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Posts from "./components/Posts";
 import CreatePost from "./components/CreatePost";
+import Post from "./components/Post.jsx";
 
 const routes = [
     {
@@ -20,9 +21,10 @@ const routes = [
         Component: CreatePost,
         path: "/posts/new",
     },
-    // {
-    //     path: "/posts/:id",
-    // },
+    {
+        Component: Post,
+        path: "/posts/:postId",
+    },
 ];
 
 export default routes;
