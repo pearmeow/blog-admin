@@ -35,7 +35,10 @@ function Post() {
 
     const handleUpdatePost = async (event) => {
         event.preventDefault();
-        // declare form variables to get
+        const formData = new FormData(event.target);
+        const title = formData.get("title");
+        const text = formData.get("text");
+        const published = formData.get("published");
         try {
             const res = await fetch(
                 import.meta.env.VITE_API + "posts/" + (post ? post.id : ""),
@@ -47,11 +50,10 @@ function Post() {
                             "Bearer " + localStorage.getItem("token"),
                     },
                     body: JSON.stringify({
-                        postId: postId,
-                        // put title gotten from form here
-                        title: "temp",
-                        text: "temp",
-                        published: "temp",
+                        postId,
+                        title,
+                        text,
+                        published,
                     }),
                 },
             );
