@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import PostCard from "./PostCard";
 import isAuthorized from "../auth.jsx";
 import { useParams } from "react-router";
 
@@ -8,14 +7,16 @@ function Post() {
     const [post, setPost] = useState(null);
     let navigate = useNavigate();
     let params = useParams();
-    params.postId;
+    const postId = Number(params.postId);
     useEffect(() => {
         (async () => {
             if (!isAuthorized()) {
                 navigate("/");
             }
             try {
-                const res = await fetch(import.meta.env.VITE_API + "posts");
+                const res = await fetch(
+                    import.meta.env.VITE_API + "posts/" + postId,
+                );
                 if (!res.ok) {
                     console.log("joever");
                     return;
@@ -27,25 +28,12 @@ function Post() {
                 console.log(err);
             }
         })();
-    }, [navigate]);
-    const pagePosts = [];
-    if (post) {
-        post.forEach((elem) => {
-            pagePosts.push(
-                <PostCard
-                    key={elem.id}
-                    title={elem.title}
-                    text={elem.text}
-                    id={elem.id}
-                />,
-            );
-        });
-    }
+    }, [navigate, postId]);
 
     return (
         <>
-            {pagePosts}
-            <Link to="/posts/new">New post</Link>
+            <p>{post && post.id}</p>
+            <Link to="/posts">Back to posts</Link>
         </>
     );
 }
