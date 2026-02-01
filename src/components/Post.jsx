@@ -62,7 +62,7 @@ function Post() {
             } else {
                 let result = await res.json();
                 console.log(result);
-                navigate("/posts/" + post.id);
+                navigate("/posts");
             }
         } catch (err) {
             console.log(err);
