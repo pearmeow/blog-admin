@@ -1,9 +1,7 @@
 import Button from "./Button";
 import Form from "./Form";
 
-function Comment({ text, author, post, commentId }) {
-    // WARN: untested because no comments exist yet
-    // burned because of not doing tdd...
+function Comment({ text, author, post, commentId, update, forceUpdate }) {
     const handleDeleteComment = async (event) => {
         event.preventDefault();
         try {
@@ -11,12 +9,11 @@ function Comment({ text, author, post, commentId }) {
                 import.meta.env.VITE_API +
                     "posts/" +
                     post.id +
-                    "/comments" +
+                    "/comments/" +
                     commentId,
                 {
                     method: "DELETE",
                     headers: {
-                        "Content-Type": "application/json",
                         Authorization:
                             "Bearer " + localStorage.getItem("token"),
                     },
@@ -27,6 +24,7 @@ function Comment({ text, author, post, commentId }) {
             } else {
                 let result = await res.json();
                 console.log(result);
+                forceUpdate(update + 1);
             }
         } catch (err) {
             console.log(err);
@@ -36,10 +34,10 @@ function Comment({ text, author, post, commentId }) {
 
     return (
         <>
-            <p>{author}: </p>
+            <p>{author.username}: </p>
             <p>{text}</p>
             <Form onSubmit={handleDeleteComment}>
-                <Button type="submit">Delete Comment</Button>
+                <Button type="submit" text="Delete Comment" />
             </Form>
         </>
     );
