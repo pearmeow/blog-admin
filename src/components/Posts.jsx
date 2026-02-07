@@ -13,7 +13,13 @@ function Posts() {
                 navigate("/");
             }
             try {
-                const res = await fetch(import.meta.env.VITE_API + "posts");
+                const res = await fetch(import.meta.env.VITE_API + "posts", {
+                    method: "GET",
+                    headers: {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token"),
+                    },
+                });
                 if (!res.ok) {
                     console.log("joever");
                     return;
