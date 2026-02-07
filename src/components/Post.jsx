@@ -69,11 +69,51 @@ function Post() {
             return;
         }
     };
+
+    // WARN: untested because no comments exist yet
+    // burned because of not doing tdd...
+    const handleDeleteComment = async (event) => {
+        event.preventDefault();
+        try {
+            const res = await fetch(
+                import.meta.env.VITE_API +
+                    "posts/" +
+                    (post ? post.id : "") +
+                    "/comments",
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token"),
+                    },
+                },
+            );
+            if (!res.ok) {
+                console.log("handleDeleteComment fetched with error");
+            } else {
+                let result = await res.json();
+                console.log(result);
+                navigate("/posts/" + post.id);
+            }
+        } catch (err) {
+            console.log(err);
+            return;
+        }
+    };
+
     console.log(post ? post.published : false);
+    if (!post) {
+        return (
+            <>
+                <p>This post doesn't exist!</p>
+                <Link to="/posts">Back to posts</Link>
+            </>
+        );
+    }
 
     return (
         <>
-            <p>{post && post.id}</p>
             <Form onSubmit={handleUpdatePost}>
                 <Input
                     type="text"
@@ -103,6 +143,7 @@ function Post() {
                 />
                 <Button type="submit" text="Submit" />
             </Form>
+            <p>Comments</p>
             <Link to="/posts">Back to posts</Link>
         </>
     );
