@@ -10,6 +10,7 @@ import Logout from "./Logout.jsx";
 
 function Post() {
     const [post, setPost] = useState(null);
+    const [update, forceUpdate] = useState(0);
     let navigate = useNavigate();
     let params = useParams();
     const postId = Number(params.postId);
@@ -21,6 +22,13 @@ function Post() {
             try {
                 const res = await fetch(
                     import.meta.env.VITE_API + "posts/" + postId,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization:
+                                "Bearer " + localStorage.getItem("token"),
+                        },
+                    },
                 );
                 if (!res.ok) {
                     console.log("joever");
@@ -33,7 +41,7 @@ function Post() {
                 console.log(err);
             }
         })();
-    }, [navigate, postId]);
+    }, [navigate, postId, update]);
 
     const handleUpdatePost = async (event) => {
         event.preventDefault();
@@ -83,14 +91,18 @@ function Post() {
         );
     }
 
-    let comments = [];
+    const comments = [];
+    console.log(post);
     for (const comm of post.comments) {
         comments.push(
             <Comment
                 key={comm.id}
                 commentId={comm.id}
+                post={post}
                 author={comm.author}
                 text={comm.text}
+                update={update}
+                forceUpdate={forceUpdate}
             />,
         );
     }
