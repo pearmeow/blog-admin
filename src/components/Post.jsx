@@ -6,6 +6,7 @@ import Form from "./Form.jsx";
 import Input from "./Input.jsx";
 import Button from "./Button.jsx";
 import Comment from "./Comment.jsx";
+import Logout from "./Logout.jsx";
 
 function Post() {
     const [post, setPost] = useState(null);
@@ -77,6 +78,7 @@ function Post() {
             <>
                 <p>This post doesn't exist!</p>
                 <Link to="/posts">Back to posts</Link>
+                <Logout />
             </>
         );
     }
@@ -127,6 +129,7 @@ function Post() {
             {comments.length == 0 ? <p>No comments yet!</p> : <p>Comments</p>}
             {comments}
             <Link to="/posts">Back to posts</Link>
+            <Logout />
         </>
     );
 }

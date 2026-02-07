@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import PostCard from "./PostCard";
 import isAuthorized from "../auth.jsx";
+import Logout from "./Logout.jsx";
 
 function Posts() {
     const [posts, setPosts] = useState(null);
@@ -43,6 +44,7 @@ function Posts() {
         <>
             {pagePosts}
             <Link to="/posts/new">New post</Link>
+            <Logout />
         </>
     );
 }
