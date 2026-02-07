@@ -11,11 +11,10 @@ function Logout() {
 
     return (
         <>
-            <p>
-                <Form onSubmit={handleLogout}>
-                    <Button type="submit" text="Log out" />
-                </Form>
-            </p>
+            <p></p>
+            <Form onSubmit={handleLogout}>
+                <Button type="submit" text="Log out" />
+            </Form>
         </>
     );
 }
