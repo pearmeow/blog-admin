@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import Form from "./Form.jsx";
 import Input from "./Input.jsx";
 import Button from "./Button.jsx";
+import Comment from "./Comment.jsx";
 
 function Post() {
     const [post, setPost] = useState(null);
@@ -70,38 +71,6 @@ function Post() {
         }
     };
 
-    // WARN: untested because no comments exist yet
-    // burned because of not doing tdd...
-    const handleDeleteComment = async (event) => {
-        event.preventDefault();
-        try {
-            const res = await fetch(
-                import.meta.env.VITE_API +
-                    "posts/" +
-                    (post ? post.id : "") +
-                    "/comments",
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization:
-                            "Bearer " + localStorage.getItem("token"),
-                    },
-                },
-            );
-            if (!res.ok) {
-                console.log("handleDeleteComment fetched with error");
-            } else {
-                let result = await res.json();
-                console.log(result);
-                navigate("/posts/" + post.id);
-            }
-        } catch (err) {
-            console.log(err);
-            return;
-        }
-    };
-
     console.log(post ? post.published : false);
     if (!post) {
         return (
@@ -109,6 +78,18 @@ function Post() {
                 <p>This post doesn't exist!</p>
                 <Link to="/posts">Back to posts</Link>
             </>
+        );
+    }
+
+    let comments = [];
+    for (const comm of post.comments) {
+        comments.push(
+            <Comment
+                key={comm.id}
+                commentId={comm.id}
+                author={comm.author}
+                text={comm.text}
+            />,
         );
     }
 
@@ -143,7 +124,8 @@ function Post() {
                 />
                 <Button type="submit" text="Submit" />
             </Form>
-            <p>Comments</p>
+            {comments.length == 0 ? <p>No comments yet!</p> : <p>Comments</p>}
+            {comments}
             <Link to="/posts">Back to posts</Link>
         </>
     );
