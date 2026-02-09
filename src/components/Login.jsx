@@ -43,6 +43,8 @@ function Login() {
     };
     return (
         <>
+            <p>Welcome to the admin page of Pear's Blog</p>
+            <p>It's not styled, so...</p>
             <p>Login</p>
             <p>{errorMessage}</p>
             <Form onSubmit={handleLogin}>
