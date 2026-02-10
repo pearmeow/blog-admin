@@ -53,12 +53,14 @@ function Login() {
                     labelName="Username"
                     name="username"
                     id={1}
+                    required={true}
                 />
                 <Input
                     type="password"
                     labelName="Password"
                     name="password"
                     id={2}
+                    required={true}
                 />
                 <Button type="submit" text="Submit" />
             </Form>

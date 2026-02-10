@@ -53,24 +53,33 @@ function Register() {
                     labelName="Username"
                     name="username"
                     id={1}
+                    required={true}
+                    minLen={8}
                 />
                 <Input
                     type="password"
                     labelName="Password"
                     name="password"
                     id={2}
+                    required={true}
+                    minLen={8}
+                    maxLen={32}
                 />
                 <Input
                     type="password"
                     labelName="Confirm Password"
                     name="confirm"
                     id={3}
+                    required={true}
+                    minLen={8}
+                    maxLen={32}
                 />
                 <Input
                     type="text"
                     labelName="Code (for author creation)"
                     name="authorcode"
                     id={4}
+                    required={true}
                 />
                 <Button type="submit" text="Submit" />
             </Form>
