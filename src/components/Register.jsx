@@ -32,8 +32,10 @@ function Register() {
             } else {
                 let result = await res.json();
                 let errs = [];
+                let key = 0;
                 for (const elem of result) {
-                    errs.push(<p>{elem.msg}</p>);
+                    errs.push(<p key={key}>{elem.msg}</p>);
+                    ++key;
                 }
                 setErrorMessage(errs);
             }
